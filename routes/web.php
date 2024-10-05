@@ -42,4 +42,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])->name('companies.destroy');
 });
 
-Route::get('/dashboard', [HomeController::class, 'goToDashboard'])->name('dashboard')->middleware('auth');;
+Route::get('/dashboard', [HomeController::class, 'recentCompaniesChart'])->name('dashboard');
