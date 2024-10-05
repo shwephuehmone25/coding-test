@@ -84,39 +84,35 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CompanyUpdateRequest $request, $id)
-{
-    $company = Company::findOrFail($id);
+    public function update(Request $request, $id)
+    {
+        $company = Company::findOrFail($id);
 
-    if ($request->hasFile('logo')) {
-        if ($company->logo) {
-            Storage::disk('public')->delete($company->logo);
+        if ($request->hasFile('logo')) {
+            if ($company->logo) {
+                Storage::disk('public')->delete($company->logo);
+            }
+
+            $logo = $request->file('logo');
+            $image = Image::read($logo)->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+
+            $path = 'logos/' . time() . '_' . $logo->getClientOriginalName();
+            $image->save(storage_path('app/public/' . $path));
+
+            $company->logo = $path;
         }
 
-        $logo = $request->file('logo');
-        $image = Image::read($logo)->resize(300, null, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        });
+        $company->name = $request->name;
+        $company->email = $request->email;
+        $company->website = $request->website;
 
-        $path = 'logos/' . time() . '_' . $logo->getClientOriginalName();
-        $image->save(storage_path('app/public/' . $path));
+        $company->save();
 
-        $company->logo = $path;
+        return redirect()->route('companies.index')->with('success', 'Company updated successfully.');
     }
-
-    $company->name = $request->name;
-    $company->email = $request->email;
-    $company->website = $request->website;
-
-    $company->save();
-
-    // Debugging: Check if the logo is saved correctly
-    Log::info("Updated company logo path: " . $company->logo); // Add this line for debugging
-
-    //return redirect()->route('companies.index')->with('success', 'Company updated successfully.');
-}
-
 
     /**
      * Remove the specified resource from storage.
