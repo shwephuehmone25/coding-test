@@ -1,83 +1,95 @@
-# Laravel SB Admin 2
+# Company Employee Management System
 
-SB Admin 2 for Laravel.
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
 
-| Laravel Version | Branch | Support     |
-|-----------------|--------|-------------|
-| 11.0            | main   |             |
-| 10.0            | v10.0  |             |
-| 9.0             | v9.0   | End of life |
-| 8.0             | v8.0   | End of life |
+## Introduction
 
-## Requirements
+This project is a Company Employee Management System built using Laravel. It allows users to manage company information, employee details, and related functionalities. The application provides an intuitive interface for creating, updating, and viewing company and employee records.
 
-- PHP >= 8.2
-- Ctype PHP Extension
-- cURL PHP Extension
-- DOM PHP Extension
-- Fileinfo PHP Extension
-- Filter PHP Extension
-- Hash PHP Extension
-- Mbstring PHP Extension
-- OpenSSL PHP Extension
-- PCRE PHP Extension
-- PDO PHP Extension
-- Session PHP Extension
-- Tokenizer PHP Extension
-- XML PHP Extension
+## Features
+
+- **User Authentication**: Secure user login and registration.
+- **Company Management**: Create, update, and delete companies.
+- **Employee Management**: Add, edit, and remove employees associated with a company.
+- **Profile Management**: Upload and manage employee profile pictures.
+- **Responsive Design**: User-friendly interface suitable for various devices.
+
+## Technologies Used
+
+- **Backend**: Laravel 9.x
+- **Frontend**: HTML, CSS, Bootstrap
+- **Database**: MySQL / PostgreSQL
+- **Image Processing**: Intervention Image
+- **Environment**: PHP 8.x
 
 ## Installation
 
-- Clone the repo and `cd` into it
-- Run `composer install`
-- Rename or copy `.env.example` file to `.env`
-- Run `php artisan key:generate`
-- Set your database credentials in your `.env` file
+Follow these steps to get a local copy of the project up and running:
 
-## Note
+1. **Clone the repository:**
 
-Recommend to install this preset on a project that you are starting from scratch, otherwise your project's design might break.
+   ```bash
+   git clone https://github.com/shwephuehmone25/coding-test
+2. **Navigate to the project directory:**
+    ```bash
+    cd coding-test
+3. **Install dependencies:**
+    ```bash
+    composer install
 
-If you found this project useful, then please consider giving it a :star:
+4. **Create a .env file:** Copy the .env.example file to a new file named .env.
+    ```bash
+    cp .env.example .env
+5. **Generate the application key:**
 
-## Credits
+    ```bash
+    php artisan key:generate
+6. **Set up the database:**
+    Database eg.
+    ```bash
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=laravel
+    DB_USERNAME=root
+    DB_PASSWORD=
+7. **Run the migrations:**
+    ```bash
+    php artisan migrate 
+8. **(Optional)** If you want to get dummy data, run this:
+    ```bash
+    php artisan db:seed --class=UserSeeder
+9. **Start the development server:**
+    ```bash
+    php artisan serve
+Access the application at http://localhost:8000.
 
-Laravel SB Admin 2 uses some open-source third-party libraries/packages, many thanks to the web community.
+## Usage
+Once the application is up and running, you can create and manage companies and employees through the web interface.
 
-- Laravel - Open source framework.
-- LaravelEasyNav - Making managing navigation in Laravel easy.
-- SB Admin 2 - Thanks to Start Bootstrap.
+- **Access the application**: Visit [http://localhost:8000](http://localhost:8000) in your web browser.
+- **Login or Register**: Use the authentication feature to log in or register a new account.
+- **Manage Companies**: Use the navigation to create, edit, or delete companies.
+- **Manage Employees**: Associate employees with companies, upload profiles, and manage employee details.
 
-## Preview
+## API Endpoints
 
-`login`
+| Method | Endpoint               | Description                       |
+|--------|------------------------|-----------------------------------|
+| POST   | `/api/companies`       | Create a new company              |
+| GET    | `/api/companies`       | Retrieve all companies            |
+| GET    | `/api/companies/{id}`  | Retrieve a specific company       |
+| PUT    | `/api/companies/{id}`  | Update a specific company         |
+| DELETE | `/api/companies/{id}`  | Delete a specific company         |
+| POST   | `/api/employees`       | Create a new employee             |
+| GET    | `/api/employees`       | Retrieve all employees            |
+| GET    | `/api/employees/{id}`  | Retrieve a specific employee      |
+| PUT    | `/api/employees/{id}`  | Update a specific employee        |
+| DELETE | `/api/employees/{id}`  | Delete a specific employee        |
 
-<img src="https://imgur.com/YjGp6Sbl.png">
-
-***
-
-`register`
-
-<img src="https://imgur.com/Wj09cu4l.png">
-
-***
-
-`dashboard`
-
-<img src="https://imgur.com/CrmOfT5l.png">
-
-***
-
-`profile`
-
-<img src="https://imgur.com/5t4eS1rl.png">
-
-***
-
-`logout`
-
-<img src="https://imgur.com/d9JclOYl.png">
-
-## License
-
-Licensed under the [MIT](LICENSE) license.
