@@ -64,7 +64,7 @@ Follow these steps to get a local copy of the project up and running:
     php artisan migrate 
 8. **(Optional)** If you want to get dummy data, run this:
     ```bash
-    php artisan db:seed --class=UserSeeder
+    php artisan db:seed 
 9. **Start the development server:**
     ```bash
     php artisan serve
