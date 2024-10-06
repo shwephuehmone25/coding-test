@@ -41,22 +41,6 @@
                             </div>
                         
                             <div class="form-group">
-                                <label for="phone">Phone</label>
-                                <input type="text" name="phone" class="form-control" id="phone" value="{{ old('phone') }}">
-                                @error('phone')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <textarea name="address" class="form-control" id="address">{{ old('address') }}</textarea>
-                                @error('address')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        
-                            <div class="form-group">
                                 <label for="website">Website</label>
                                 <input type="url" name="website" class="form-control" id="website" value="{{ old('website') }}">
                                 @error('website')
