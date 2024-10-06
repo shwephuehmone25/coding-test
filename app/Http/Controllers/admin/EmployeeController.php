@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Http\Requests\employee\EmployeeStoreRequest;
+use App\Http\Requests\employee\EmployeeUpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\File;
@@ -101,24 +102,16 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(EmployeeUpdateRequest $request, $id)
     {
         $employee = Employee::findOrFail($id);
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:employees,email,' . $employee->id,
-            'phone' => 'required|string|max:15',
-            'profile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'company_id' => 'required|exists:companies,id',
-        ]);
 
         if ($request->hasFile('profile')) {
             if ($employee->profile) {
                 Storage::disk('public')->delete($employee->profile);
             }
 
-            $image = Image::read($request->file('profile'));
+            $image = Image::read($request->file('profile')); 
 
             $image->resize(300, 300, function ($constraint) {
                 $constraint->aspectRatio();
@@ -126,13 +119,13 @@ class EmployeeController extends Controller
             });
 
             $profilePath = 'profiles/' . uniqid() . '.' . $request->file('profile')->getClientOriginalExtension();
-
             $image->save(public_path('storage/' . $profilePath));
 
             $employee->profile = $profilePath;
         }
 
         $employee->fill($request->only(['name', 'email', 'phone', 'company_id']));
+        
         $employee->save();
 
         return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');

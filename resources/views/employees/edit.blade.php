@@ -27,7 +27,7 @@
             <div class="form-group mb-3">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" value="{{ old('name', $employee->name) }}"
-                    class="form-control @error('name') is-invalid @enderror" placeholder="Employee Name" required>
+                    class="form-control @error('name') is-invalid @enderror" placeholder="Employee Name">
                 @error('name')
                     <small class="text-danger">{{ $message }}</small>
                 @enderror
@@ -37,7 +37,7 @@
             <div class="form-group mb-3">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" value="{{ old('email', $employee->email) }}"
-                    class="form-control @error('email') is-invalid @enderror" placeholder="Employee Email" required>
+                    class="form-control @error('email') is-invalid @enderror" placeholder="Employee Email">
                 @error('email')
                     <small class="text-danger">{{ $message }}</small>
                 @enderror
@@ -47,7 +47,7 @@
             <div class="form-group mb-3">
                 <label for="phone">Phone</label>
                 <input type="text" id="phone" name="phone" value="{{ old('phone', $employee->phone) }}"
-                    class="form-control @error('phone') is-invalid @enderror" placeholder="Employee Phone" required>
+                    class="form-control @error('phone') is-invalid @enderror" placeholder="Employee Phone">
                 @error('phone')
                     <small class="text-danger">{{ $message }}</small>
                 @enderror
@@ -82,8 +82,7 @@
             <!-- Select Company -->
             <div class="form-group mb-3">
                 <label for="company_id">Company</label>
-                <select id="company_id" name="company_id" class="form-control @error('company_id') is-invalid @enderror"
-                    required>
+                <select id="company_id" name="company_id" class="form-control @error('company_id') is-invalid @enderror">
                     <option value="">Select Company</option>
                     @foreach ($companies as $company)
                         <option value="{{ $company->id }}" {{ $company->id == $employee->company_id ? 'selected' : '' }}>
