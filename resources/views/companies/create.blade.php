@@ -55,6 +55,12 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
+
+                            <!-- Preview image section -->
+                            <div class="form-group mt-3">
+                                <label>Logo Preview</label>
+                                <img id="preview-image" src="" alt="Logo Preview" style="display: none; height: 80px; width: auto;" />
+                            </div>
                         
                             <button type="submit" class="btn btn-primary">Create Company</button>
                         </form>

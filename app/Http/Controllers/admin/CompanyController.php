@@ -8,7 +8,7 @@ use App\Http\Requests\Company\CompanyUpdateRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log; 
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Laravel\Facades\Image;
 
 class CompanyController extends Controller
@@ -42,27 +42,35 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CompanyCreateRequest $request)
     {
-        $logo = $request->file('logo');
-
-        $image = Image::read($logo)->resize(300, null, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        });
-
-        $path = 'logos/' . time() . '_' . $logo->getClientOriginalName();
-
-        $image->save(storage_path('app/public/' . $path));
-
-        Company::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'logo' => $path,
-            'website' => $request->website,
-        ]);
-
-        return redirect()->route('companies.index')->with('success', 'Company created successfully.');
+        try {
+            $logo = $request->file('logo');
+    
+            $directoryPath = storage_path('app/public/logos');
+            if (!File::exists($directoryPath)) {
+                File::makeDirectory($directoryPath, 0755, true);
+            }
+    
+            $image = Image::read($logo)->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+    
+            $path = 'logos/' . time() . '_' . $logo->getClientOriginalName();
+            $image->save(storage_path('app/public/' . $path));
+    
+            Company::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'logo' => $path,
+                'website' => $request->website,
+            ]);
+    
+            return redirect()->route('companies.index')->with('success', 'Company created successfully.');
+        } catch (\Exception $e) {
+            return back()->withErrors(['logo' => 'Error uploading logo: ' . $e->getMessage()]);
+        }
     }
 
     /**
