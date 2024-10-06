@@ -27,7 +27,7 @@ class AuthenticatedSessionController extends Controller
             ]);
         }
 
-        return redirect()->route('companies.index'); 
+        return redirect()->route('dashboard.charts'); 
     }
 
     public function destroy(Request $request)
