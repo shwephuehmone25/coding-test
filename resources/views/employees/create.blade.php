@@ -26,7 +26,7 @@
             <div class="form-group mb-3">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name"
-                    class="form-control @error('name') is-invalid @enderror" placeholder="Employee Name" required>
+                    class="form-control @error('name') is-invalid @enderror" placeholder="Employee Name">
                 @error('name')
                     <small class="text-danger">{{ $message }}</small>
                 @enderror
@@ -36,7 +36,7 @@
             <div class="form-group mb-3">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email"
-                    class="form-control @error('email') is-invalid @enderror" placeholder="Employee Email" required>
+                    class="form-control @error('email') is-invalid @enderror" placeholder="Employee Email">
                 @error('email')
                     <small class="text-danger">{{ $message }}</small>
                 @enderror
@@ -46,7 +46,7 @@
             <div class="form-group mb-3">
                 <label for="phone">Phone</label>
                 <input type="text" id="phone" name="phone"
-                    class="form-control @error('phone') is-invalid @enderror" placeholder="Employee Phone" required>
+                    class="form-control @error('phone') is-invalid @enderror" placeholder="Employee Phone">
                 @error('phone')
                     <small class="text-danger">{{ $message }}</small>
                 @enderror
@@ -56,7 +56,7 @@
             <div class="form-group mb-3">
                 <label for="profile">Profile</label>
                 <input type="file" id="profile" name="profile" class="form-control @error('profile') is-invalid @enderror" 
-                       placeholder="Employee Profile" accept="image/*" required />
+                       placeholder="Employee Profile" accept="image/*" />
                 <div class="preview my-2 border-1 rounded-3 overflow-hidden" style="max-width: 150px">
                     <img src="" id="preview-image" style="height: 80px; width: 80px; display: none;" />
                 </div>
@@ -68,8 +68,7 @@
             <!-- Select Company -->
             <div class="form-group mb-3">
                 <label for="company_id">Company</label>
-                <select id="company_id" name="company_id" class="form-control @error('company_id') is-invalid @enderror"
-                    required>
+                <select id="company_id" name="company_id" class="form-control @error('company_id') is-invalid @enderror">
                     <option value="">Select Company</option>
                     @foreach ($companies as $company)
                         <option value="{{ $company->id }}">{{ $company->name }}</option>
