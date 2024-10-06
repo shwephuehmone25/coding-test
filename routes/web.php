@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\ChartController;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
@@ -40,6 +41,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('companies/{company}/edit', [CompanyController::class, 'edit'])->name('companies.edit');
     Route::put('companies/{id}', [CompanyController::class, 'update'])->name('companies.update');
     Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])->name('companies.destroy');
+
+    Route::get('/dashboard/charts', [ChartController::class, 'getRecentChartsData'])->name('dashboard.charts');
 });
 
-Route::get('/dashboard', [HomeController::class, 'goToDashboard'])->name('dashboard')->middleware('auth');;
+Route::get('/dashboard', [HomeController::class, 'goToDashboard'])->name('dashboard')->middleware('auth');
