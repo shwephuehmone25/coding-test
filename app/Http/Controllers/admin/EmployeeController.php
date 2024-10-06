@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\employee\EmployeeStoreRequest;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Laravel\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 class EmployeeController extends Controller
 {
@@ -49,6 +50,12 @@ class EmployeeController extends Controller
         $profilePath = null;
 
         if ($request->hasFile('profile')) {
+            
+            $directoryPath = storage_path('app/public/profiles');
+            if (!File::exists($directoryPath)) {
+                File::makeDirectory($directoryPath, 0755, true);
+            }
+
             $image = Image::read($request->file('profile'));
 
             $image->resize(300, 300, function ($constraint) {
@@ -58,7 +65,7 @@ class EmployeeController extends Controller
 
             $profilePath = 'profiles/' . uniqid() . '.' . $request->file('profile')->getClientOriginalExtension();
 
-            $image->save(public_path('storage/' . $profilePath));
+            $image->save(storage_path('app/public/' . $profilePath));
         }
 
         Employee::create([
