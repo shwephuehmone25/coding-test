@@ -33,7 +33,6 @@ This project is a Company Employee Management System built using Laravel. It all
 Follow these steps to get a local copy of the project up and running:
 
 1. **Clone the repository:**
-
    ```bash
    git clone https://github.com/shwephuehmone25/coding-test
 2. **Navigate to the project directory:**
@@ -42,15 +41,16 @@ Follow these steps to get a local copy of the project up and running:
 3. **Install dependencies:**
     ```bash
     composer install
-
 4. **Create a .env file:** Copy the .env.example file to a new file named .env.
     ```bash
     cp .env.example .env
 5. **Generate the application key:**
-
     ```bash
     php artisan key:generate
-6. **Set up the database:**
+6. **Create the symbolic link:**   
+    ```bash
+    php artisan key:generate
+7. **Set up the database:**
     Database eg.
     ```bash
     DB_CONNECTION=mysql
@@ -59,13 +59,13 @@ Follow these steps to get a local copy of the project up and running:
     DB_DATABASE=laravel
     DB_USERNAME=root
     DB_PASSWORD=
-7. **Run the migrations:**
+8. **Run the migrations:**
     ```bash
     php artisan migrate 
-8. **(Optional)** If you want to get dummy data, run this:
+9. **(Optional)** If you want to get dummy data, run this:
     ```bash
     php artisan db:seed 
-9. **Start the development server:**
+10. **Start the development server:**
     ```bash
     php artisan serve
 Access the application at http://localhost:8000.
