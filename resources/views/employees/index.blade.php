@@ -72,6 +72,11 @@
                                     <i class="fas fa-trash"></i> Delete
                                 </button>
                             </form>
+
+                            <a href="{{ route('employees.show', $employee->id) }}" class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-eye"></i> View
+                            </a>
+
                         </td>
                     </tr>
                 @endforeach

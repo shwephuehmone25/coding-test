@@ -83,10 +83,9 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Employee $employee)
     {
-        $employee = Employee::findOrFail($id);
-        return response()->json($employee);
+        return view('employees.show', compact('employee'));
     }
 
     /**

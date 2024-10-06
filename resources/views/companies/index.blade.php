@@ -78,6 +78,11 @@
                                     onclick="return confirm('Are you sure you want to delete this company?')"><i
                                         class="fa-solid fa-trash"></i>Delete</button>
                             </form>
+
+                            <a href="{{ route('companies.show', $company->id) }}" class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-eye"></i> View
+                            </a>
+                            
                         </td>
                     </tr>
                 @endforeach
